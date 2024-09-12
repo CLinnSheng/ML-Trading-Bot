@@ -1,0 +1,2 @@
+datetime,portfolio_value,cash,positions,return
+2022-12-15 09:30:00-05:00,100000.0,100000.0,"[{'asset': USD, 'quantity': 100000.0}]",

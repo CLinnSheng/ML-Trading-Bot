@@ -7,6 +7,15 @@ from alpaca_trade_api import REST
 from timedelta import Timedelta 
 from finbert_utils import estimate_sentiment
 
+"""
+Short Position: Selling a security that you do not own
+    Borrow the security from a broker and sell it in the market. Later, buy back the security to return it to the broker
+    ideally at a lower price to make profit
+    
+Long Position: Buy a security with the expactation that the price will increase
+    Own the security and can sell it later, ideally at a high price to make profit
+"""
+
 API_KEY = "PK6ESCX0NWC5F5X2ASGS"
 API_SECRET = "wEp80Fti9Yu0toUuUWf9pBGCXXW9YQE7A0eDUtOi"
 BASE_URL = "https://paper-api.alpaca.markets/v2"
@@ -37,8 +46,8 @@ class MLTrader(Strategy):
 
         if cash > last_price:
             if sentiment == "positive" and probability > .88:
-                # Close all short trade
-                if self.last_trade == "sell":
+                if self.last_trade == "sell": # Indicating the last order is a short position
+                    # Closing all the short positions because we expecting the market gonna be bullish
                     self.sell_all()
                 order = self.create_order(
                     self.symbol,
@@ -52,7 +61,8 @@ class MLTrader(Strategy):
                 self.last_trade="buy"
             
             elif sentiment == "negative" and probability > .88:
-                if self.last_trade == "buy":
+                if self.last_trade == "buy": # Long position
+                    # Closing all the long order because we expecting the market gonna be bearish
                     self.sell_all()
                 order = self.create_order(
                     self.symbol,
@@ -76,16 +86,20 @@ class MLTrader(Strategy):
         news = [new.__dict__["_raw"]["summary"] for new in news]
         return estimate_sentiment(news)
 
-start_date = datetime(2022, 1, 1)
+start_date = datetime(2024, 1, 1)
 end_date = datetime(2024, 5, 30)
 
 broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name="mlstrat", broker=broker, parameters={"symbol":"SPY",
                                                                "cash_at_risk":.5})
 
-strategy.backtest(
-    YahooDataBacktesting,
-    start_date,
-    end_date,
-    parameters={"symbol" : "SPY"}
-)
+# strategy.backtest(
+#     YahooDataBacktesting,
+#     start_date,
+#     end_date,
+#     parameters={"symbol" : "SPY"}
+# )
+
+trader = Trader()
+trader.add_strategy(strategy)
+trader.run_all()

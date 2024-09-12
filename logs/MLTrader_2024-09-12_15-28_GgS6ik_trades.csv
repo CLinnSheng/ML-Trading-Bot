@@ -1,0 +1,2 @@
+time,strategy,identifier,symbol,side,type,status,multiplier,time_in_force,asset.strike,asset.multiplier,asset.asset_type
+2022-12-15 09:30:00-05:00,MLTrader,0ca9cfe1bc404c65825878b29d8cb7e1,SPY,buy,bracker,new,1,gtc,0.0,1,stock
