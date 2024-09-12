@@ -4,6 +4,10 @@
 
 MLTrader is a machine learning-based trading strategy that uses sentiment analysis of recent news articles to make trading decisions. The strategy is designed to open long or short positions based on the sentiment of the news articles and close positions when the sentiment changes.
 
+## Model Used
+
+The sentiment analysis is performed using the **FinBERT** model, a pre-trained BERT model specifically fine-tuned for financial sentiment analysis. FinBERT is designed to understand the nuances of financial language and provides accurate sentiment predictions for financial news articles.
+
 ## Features
 
 - **Sentiment Analysis**: Uses a pre-trained model to analyze the sentiment of news articles related to a specific stock.
