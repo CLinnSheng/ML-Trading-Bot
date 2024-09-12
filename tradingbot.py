@@ -44,7 +44,7 @@ class MLTrader(Strategy):
         cash, last_price, quantity = self.position_sizing()
         probability, sentiment = self.get_sentiment()
 
-        if cash > last_price:
+        if cash > last_price * quantity:
             if sentiment == "positive" and probability > .88:
                 if self.last_trade == "sell": # Indicating the last order is a short position
                     # Closing all the short positions because we expecting the market gonna be bullish
