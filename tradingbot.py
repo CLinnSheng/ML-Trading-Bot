@@ -16,9 +16,9 @@ Long Position: Buy a security with the expactation that the price will increase
     Own the security and can sell it later, ideally at a high price to make profit
 """
 
-API_KEY = "PK6ESCX0NWC5F5X2ASGS"
-API_SECRET = "wEp80Fti9Yu0toUuUWf9pBGCXXW9YQE7A0eDUtOi"
-BASE_URL = "https://paper-api.alpaca.markets/v2"
+API_KEY = ""
+API_SECRET = ""
+BASE_URL = ""
 
 ALPACA_CREDS = {
     "API_KEY" : API_KEY,
