@@ -1,4 +1,4 @@
-# MLTrader: Machine Learning-Based Trading Strategy
+# A Trading Bot Powered by Machine Learning
 
 ## Overview
 
